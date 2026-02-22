@@ -195,16 +195,30 @@ async function loadImages() {
 
   const data = await res.json();
 
-  imgGallery.innerHTML = data.map(row => {
+  // Tøm alle dynamiske gallerier først
+  document.querySelectorAll('[id^="gallery-"]').forEach(g => {
+    g.querySelectorAll('[data-dyn="1"]').forEach(el => el.remove());
+  });
+
+  data.forEach(row => {
     const url = publicUrl(row.path);
     const who = row.name ? `— ${row.name}` : "";
-    return `
-      <figure class="polaroid" style="transform:none;">
-        <img src="${url}" />
-        <figcaption>${who}</figcaption>
-      </figure>
+
+    const gallery = document.getElementById(`gallery-${row.periode}`);
+    if (!gallery) return;
+
+    const figure = document.createElement("figure");
+    figure.className = "polaroid";
+    figure.setAttribute("data-dyn", "1");
+    figure.style.transform = "none";
+
+    figure.innerHTML = `
+      <img src="${url}" />
+      <figcaption>${who}</figcaption>
     `;
-  }).join("");
+
+    gallery.prepend(figure);
+  });
 }
 
 imgUpload?.addEventListener("click", async () => {
