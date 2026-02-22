@@ -164,6 +164,8 @@ async function uploadFile(path, file) {
 }
 
 async function insertImageRow(path, name) {
+  const periode = document.getElementById("imgPeriode").value;
+
   const res = await fetch(`${SUPABASE_URL}/rest/v1/bilder`, {
     method: "POST",
     headers: {
@@ -172,7 +174,7 @@ async function insertImageRow(path, name) {
       Authorization: `Bearer ${SUPABASE_KEY}`,
       Prefer: "return=minimal"
     },
-    body: JSON.stringify([{ path, name }])
+    body: JSON.stringify([{ path, name, periode }])
   });
 
   if (!res.ok) throw new Error("DB insert failed");
