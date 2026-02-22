@@ -204,7 +204,8 @@ async function loadImages() {
     const url = publicUrl(row.path);
     const who = row.name ? `— ${row.name}` : "";
 
-    const gallery = document.getElementById(`gallery-${row.periode}`);
+    const year = row.periode || "2025"; //fallback
+    const gallery = document.getElementById(`gallery-${year}`);
     if (!gallery) return;
 
     const figure = document.createElement("figure");
