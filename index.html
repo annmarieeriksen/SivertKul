@@ -54,14 +54,23 @@
     <!-- HILSENER -->
     <section id="hilsen" class="panel">
       <h1>Hilsener 💌</h1>
-      <p>Trykk på en hilsen for å åpne den.</p>
+      
+      <!-- NY: skriv en hilsen -->
+<div class="add">
+  <input id="gbName" type="text" placeholder="Navn " maxlength="40" />
+  <input id="gbMsg" type="text" placeholder="Skriv en hilsen" maxlength="200" />
+  <button id="gbSend">Send</button>
+</div>
+
+<p class="hint" id="gbStatus"></p>
+<div id="gbList"></div>
 
       <details class="note">
         <summary>Fra Annmarie</summary>
-        <p>Hei Sivert! Du betyr utrolig mye. ❤️</p>
+        <p>Heiiiiiiiii ilu ❤️</p>
       </details>
 
-      <details class="note">
+      <!-- <details class="note">
         <summary>Fra Mamma</summary>
         <p></p>
       </details>
@@ -79,12 +88,7 @@
       <details class="note">
         <summary>Fra Mathias</summary>
         <p> x </p>
-      </details>
-
-      <details class="note">
-        <summary>Fra Mats</summary>
-        <p> x </p>
-      </details>
+      </details>-->
 
       <details class="note">
   <summary>Fra Mats</summary>
@@ -97,7 +101,7 @@
 </details>
 
 
-      <p class="hint">Vil du legge til flere? Kopier en “details”-blokk og endre navn/tekst.</p>
+      <p class="hint">Hilsener</p>
     </section>
 
 
@@ -166,18 +170,36 @@
   <h1>Bilder 📸</h1>
   <p>Minner gjennom årene</p>
 
+
+  <div class="add">
+  <input id="imgName" type="text" placeholder="Navn (valgfritt)" />
+
+  <select id="imgPeriode">
+  <option value="2003-2013">2003–2013</option>
+  <option value="2013-2022">2013–2022</option>
+  <option value="2023">2023</option>
+  <option value="2024">2024</option>
+  <option value="2025">2025</option>
+  <option value="2026">2026</option>
+
+</select>
+  <input id="imgFiles" type="file" accept="image/*" multiple />
+  <button id="imgUpload">Last opp bilder</button>
+</div>
+
+<p class="hint" id="imgStatus"></p>
+
+<div class="gallery" id="imgGallery"></div>
+
+
   <!-- 2003–2013 -->
   <h2>👶🏿 2003 – 2013</h2>
   <div class="gallery">
-    <img src="Bilder/2003-2013/1.jpg" alt="2003-2013 bilde 1">
-    <img src="Bilder/2003-2013/2.jpg" alt="2003-2013 bilde 2">
   </div>
 
   <!-- 2013–2022 -->
   <h2> 🧑🏼 2013 – 2022</h2>
   <div class="gallery">
-    <img src="Bilder/2013-2022/1.jpg" alt="2013-2022 bilde 1">
-    <img src="Bilder/2013-2022/2.jpg" alt="2013-2022 bilde 2">
   </div>
 
   <!-- 2023 -->
@@ -284,7 +306,7 @@
   <h1>Bucket list ✨</h1>
   <p>Ting vi vil få til! 💚</p>
 
-  <h2>💙 Sivert 23 år</h2>
+  <h2>Sivert 2026</h2>
   <ul class="bucket" id="bucket-sivert">
     <li><label><input type="checkbox"> Benke 150 kg</label></li>
     <li><label><input type="checkbox"> Løpe 3k på under 13 minutter</label></li>
@@ -292,12 +314,12 @@
 
   <div class="add">
     <input id="newSivert" type="text" placeholder="Legg til noe Sivert vil gjøre..." />
-    <button onclick="addItem('bucket-sivert', 'newSivert')">Legg til</button>
+    <button onclick="addBucketItem('sivert', 'newSivert', 'bucket-sivert')">Legg til</button>
   </div>
 
   <hr>
 
-  <h2>💚 Sivert og Ann</h2>
+  <h2>Sivert og Ann 2026-2027</h2>
   <ul class="bucket" id="bucket-annmarie">
     <li><label><input type="checkbox"> Hoppe fallskjerm</label></li>
     <li><label><input type="checkbox"> Reise sør-øst Asia</label></li>
@@ -305,7 +327,7 @@
 
   <div class="add">
     <input id="newAnnmarie" type="text" placeholder="Legg til noe Annmarie vil gjøre..." />
-    <button onclick="addItem('bucket-annmarie', 'newAnnmarie')">Legg til</button>
+    <button onclick="addBucketItem('annmarie', 'newAnnmarie', 'bucket-annmarie')">Legg til</button>
   </div>
 </section>
 
