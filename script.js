@@ -201,25 +201,22 @@ async function loadImages() {
   });
 
   data.forEach(row => {
-    const url = publicUrl(row.path);
-    const who = row.name ? `— ${row.name}` : "";
+  const url = publicUrl(row.path);
 
-    const year = row.periode || "2025"; //fallback
-    const gallery = document.getElementById(`gallery-${year}`);
-    if (!gallery) return;
+  const year = row.periode || "2025";
+  const gallery = document.getElementById(`gallery-${year}`);
+  if (!gallery) return;
 
-    const figure = document.createElement("figure");
-    figure.className = "polaroid";
-    figure.setAttribute("data-dyn", "1");
-    figure.style.transform = "none";
+  const img = document.createElement("img");
+  img.src = url;
+  img.alt = "Opplastet bilde";
+  img.setAttribute("data-dyn", "1");
 
-    figure.innerHTML = `
-      <img src="${url}" />
-      <figcaption>${who}</figcaption>
-    `;
+  // valgfritt: navn vises når man holder over (ikke endrer layout)
+  if (row.name && row.name.trim()) img.title = `Fra ${row.name.trim()}`;
 
-    gallery.prepend(figure);
-  });
+  gallery.prepend(img);
+});
 }
 
 imgUpload?.addEventListener("click", async () => {
